@@ -119,14 +119,71 @@ export default class Time extends React.Component {
     }
 
     return times.map((time, i) => (
-      <li
+      <span
         key={i}
         onClick={this.handleClick.bind(this, time)}
         className={this.liClasses(time, currH, currM)}
       >
         {formatDate(time, format)}
-      </li>
+      </span>
     ));
+  };
+
+  renderPreviousTimeOption = () => {
+    const classes = [
+      "react-datepicker__navigation",
+      "react-datepicker__navigation--previous"
+    ];
+
+    let clickHandler = this.decreaseTime;
+
+    return (
+      <button
+        type="button"
+        className={classes.join(" ")}
+        onClick={clickHandler}
+      />
+    );
+  };
+
+  renderNextTimeOption = () => {
+    const classes = [
+      "react-datepicker__navigation",
+      "react-datepicker__navigation--next"
+    ];
+
+    let clickHandler = this.increaseTime;
+
+    // if (allNextDaysDisabled && this.props.showDisabledMonthNavigation) {
+    //   classes.push("react-datepicker__navigation--next--disabled");
+    //   clickHandler = null;
+    // }
+
+    return (
+      <button
+        type="button"
+        className={classes.join(" ")}
+        onClick={clickHandler}
+      />
+    );
+  };
+
+  increaseTime = () => {
+    this.setState(
+      {
+        date: addTime(cloneDate(this.state.date), 1)
+      },
+      () => this.handleMonthChange(this.state.date)
+    );
+  };
+
+  decreaseTime = () => {
+    this.setState(
+      {
+        date: subtractTime(cloneDate(this.state.date), 1)
+      },
+      () => this.handleMonthChange(this.state.date)
+    );
   };
 
   render() {
@@ -136,29 +193,21 @@ export default class Time extends React.Component {
     }
 
     return (
-      <div
-        className={`react-datepicker__time-container ${
-          this.props.todayButton
-            ? "react-datepicker__time-container--with-today-button"
-            : ""
-        }`}
-      >
-        <div className="react-datepicker__header react-datepicker__header--time">
-          <div className="react-datepicker-time__header">
-            {this.props.timeCaption}
-          </div>
-        </div>
+      <div className={`react-datepicker__time-container`}>
         <div className="react-datepicker__time">
           <div className="react-datepicker__time-box">
-            <ul
+            <div
               className="react-datepicker__time-list"
               ref={list => {
                 this.list = list;
               }}
-              style={height ? { height } : {}}
             >
-              {this.renderTimes.bind(this)()}
-            </ul>
+              {this.renderPreviousTimeOption()}
+              {this.renderNextTimeOption()}
+              <div className="time-container">
+                {this.renderTimes.bind(this)()}
+              </div>
+            </div>
           </div>
         </div>
       </div>
