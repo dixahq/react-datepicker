@@ -26320,8 +26320,7 @@
                 withPortal: false,
                 shouldCloseOnSelect: true,
                 showTimeSelect: false,
-                timeIntervals: 30,
-                timeCaption: "Time"
+                timeIntervals: 60
               };
             }
           }
@@ -26668,6 +26667,11 @@
             _this.onClearClick();
           };
 
+          _this.confirmReminder = function() {
+            console.log("confirmReminder in index.jsx ", _this.props.selected);
+            _this.props.confirmReminder(_this.props.selected);
+          };
+
           _this.renderCalendar = function() {
             if (
               !_this.props.inline &&
@@ -26739,9 +26743,9 @@
                 minTime: _this.props.minTime,
                 maxTime: _this.props.maxTime,
                 excludeTimes: _this.props.excludeTimes,
-                timeCaption: _this.props.timeCaption,
                 className: _this.props.calendarClassName,
-                yearDropdownItemNumber: _this.props.yearDropdownItemNumber
+                yearDropdownItemNumber: _this.props.yearDropdownItemNumber,
+                confirmReminder: _this.confirmReminder
               },
               _this.props.children
             );
@@ -26961,7 +26965,6 @@
         startDate: _propTypes2.default.object,
         startOpen: _propTypes2.default.bool,
         tabIndex: _propTypes2.default.number,
-        timeCaption: _propTypes2.default.string,
         title: _propTypes2.default.string,
         todayButton: _propTypes2.default.string,
         useWeekdaysShort: _propTypes2.default.bool,
@@ -26980,7 +26983,8 @@
         maxTime: _propTypes2.default.object,
         excludeTimes: _propTypes2.default.array,
         useShortMonthInDropdown: _propTypes2.default.bool,
-        clearButtonTitle: _propTypes2.default.string
+        clearButtonTitle: _propTypes2.default.string,
+        confirmReminder: _propTypes2.default.func
       };
       exports.default = DatePicker;
 
@@ -27604,6 +27608,10 @@
             return monthList;
           };
 
+          _this.confirmReminder = function() {
+            console.log("SELECTED ", _this.props.selected);
+          };
+
           _this.state = {
             date: _this.localizeDate(_this.getDateInView()),
             selectingDate: null,
@@ -27691,7 +27699,10 @@
             }),
             _react2.default.createElement(
               "button",
-              { className: "reminder-button" },
+              {
+                onClick: this.props.confirmReminder,
+                className: "reminder-button"
+              },
               "Set reminder"
             ),
             this.props.children
@@ -27763,7 +27774,8 @@
         yearDropdownItemNumber: _propTypes2.default.number,
         setOpen: _propTypes2.default.func,
         useShortMonthInDropdown: _propTypes2.default.bool,
-        showDisabledMonthNavigation: _propTypes2.default.bool
+        showDisabledMonthNavigation: _propTypes2.default.bool,
+        confirmReminder: _propTypes2.default.func
       };
       exports.default = Calendar;
 

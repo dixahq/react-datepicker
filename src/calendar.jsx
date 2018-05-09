@@ -107,7 +107,8 @@ export default class Calendar extends React.Component {
     yearDropdownItemNumber: PropTypes.number,
     setOpen: PropTypes.func,
     useShortMonthInDropdown: PropTypes.bool,
-    showDisabledMonthNavigation: PropTypes.bool
+    showDisabledMonthNavigation: PropTypes.bool,
+    confirmReminder: PropTypes.func
   };
 
   static get defaultProps() {
@@ -541,6 +542,10 @@ export default class Calendar extends React.Component {
     return monthList;
   };
 
+  confirmReminder = () => {
+    console.log("SELECTED ", this.props.selected);
+  };
+
   render() {
     return (
       <div
@@ -571,7 +576,12 @@ export default class Calendar extends React.Component {
           monthRef={this.state.monthContainer}
           injectTimes={this.props.injectTimes}
         />
-        <button className="reminder-button">Set reminder</button>
+        <button
+          onClick={this.props.confirmReminder}
+          className="reminder-button"
+        >
+          Set reminder
+        </button>
         {this.props.children}
       </div>
     );

@@ -123,7 +123,6 @@ export default class DatePicker extends React.Component {
     startDate: PropTypes.object,
     startOpen: PropTypes.bool,
     tabIndex: PropTypes.number,
-    timeCaption: PropTypes.string,
     title: PropTypes.string,
     todayButton: PropTypes.string,
     useWeekdaysShort: PropTypes.bool,
@@ -142,7 +141,8 @@ export default class DatePicker extends React.Component {
     maxTime: PropTypes.object,
     excludeTimes: PropTypes.array,
     useShortMonthInDropdown: PropTypes.bool,
-    clearButtonTitle: PropTypes.string
+    clearButtonTitle: PropTypes.string,
+    confirmReminder: PropTypes.func
   };
 
   static get defaultProps() {
@@ -166,8 +166,7 @@ export default class DatePicker extends React.Component {
       withPortal: false,
       shouldCloseOnSelect: true,
       showTimeSelect: false,
-      timeIntervals: 30,
-      timeCaption: "Time"
+      timeIntervals: 60
     };
   }
 
@@ -491,6 +490,11 @@ export default class DatePicker extends React.Component {
     this.onClearClick();
   };
 
+  confirmReminder = () => {
+    console.log("confirmReminder in index.jsx ", this.props.selected);
+    this.props.confirmReminder(this.props.selected);
+  };
+
   renderCalendar = () => {
     if (!this.props.inline && (!this.state.open || this.props.disabled)) {
       return null;
@@ -556,9 +560,9 @@ export default class DatePicker extends React.Component {
         minTime={this.props.minTime}
         maxTime={this.props.maxTime}
         excludeTimes={this.props.excludeTimes}
-        timeCaption={this.props.timeCaption}
         className={this.props.calendarClassName}
         yearDropdownItemNumber={this.props.yearDropdownItemNumber}
+        confirmReminder={this.confirmReminder}
       >
         {this.props.children}
       </WrappedCalendar>
