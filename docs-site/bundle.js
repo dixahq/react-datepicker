@@ -26520,7 +26520,6 @@
                   });
                 }
               }
-              _this.props.onChange(changedDate, event);
             }
 
             _this.props.onSelect(changedDate, event);
@@ -26565,7 +26564,6 @@
               preSelection: changedDate
             });
 
-            _this.props.onChange(changedDate);
             _this.setOpen(false);
             _this.setState({ inputValue: null });
           };
@@ -26659,7 +26657,6 @@
                 event.preventDefault();
               }
             }
-            _this.props.onChange(null, event);
             _this.setState({ inputValue: null });
           };
 
@@ -58764,6 +58761,8 @@
             });
           };
 
+          _this.confirmReminder = function(time) {};
+
           _this.state = {
             startDate: (0, _moment2.default)()
           };
@@ -58785,7 +58784,7 @@
                 _react2.default.createElement(
                   "strong",
                   null,
-                  '    showTimeSelect\n    timeFormat="HH:mm"\n    timeIntervals={15}\n    dateFormat="LLL"\n    timeCaption="time"\n/>\n'
+                  '    showTimeSelect\n    timeFormat="HH:mm"\n    timeIntervals={15}\n    dateFormat="LLL"\n    timeCaption="time"\n    confirmReminder={this.confirmReminder}\n/>\n'
                 )
               )
             ),
@@ -58799,7 +58798,8 @@
                 timeFormat: "HH:mm",
                 timeIntervals: 15,
                 timeCaption: "time",
-                dateFormat: "LLL"
+                dateFormat: "LLL",
+                confirmReminder: this.confirmReminder
               })
             )
           );
