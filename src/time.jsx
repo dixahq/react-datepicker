@@ -20,21 +20,24 @@ export default class Time extends React.Component {
     intervals: PropTypes.number,
     selected: PropTypes.object,
     onChange: PropTypes.func,
-    todayButton: PropTypes.string,
     minTime: PropTypes.object,
     maxTime: PropTypes.object,
     excludeTimes: PropTypes.array,
     monthRef: PropTypes.object,
-    timeCaption: PropTypes.string,
     injectTimes: PropTypes.array
   };
 
   static get defaultProps() {
     return {
       intervals: 30,
-      onTimeChange: () => {},
-      todayButton: null,
-      timeCaption: "Time"
+      onTimeChange: () => {}
+    };
+  }
+
+  constructor(props: propTypes) {
+    super(props);
+    this.state = {
+      index: 0
     };
   }
 
@@ -88,7 +91,7 @@ export default class Time extends React.Component {
     return classes.join(" ");
   };
 
-  renderTimes = () => {
+  renderTimes = (index: number) => {
     let times = [];
     const format = this.props.format ? this.props.format : "hh:mm A";
     const intervals = this.props.intervals;
@@ -118,15 +121,20 @@ export default class Time extends React.Component {
       }
     }
 
-    return times.map((time, i) => (
-      <span
-        key={i}
-        onClick={this.handleClick.bind(this, time)}
-        className={this.liClasses(time, currH, currM)}
-      >
-        {formatDate(time, format)}
-      </span>
-    ));
+    const time = times.map((time, i) => {
+      if (i === index) {
+        return (
+          <span
+            key={i}
+            onClick={this.handleClick.bind(this, time)}
+            className={this.liClasses(time, currH, currM)}
+          >
+            {formatDate(time, format)}
+          </span>
+        );
+      }
+    });
+    return time;
   };
 
   renderPreviousTimeOption = () => {
@@ -154,11 +162,6 @@ export default class Time extends React.Component {
 
     let clickHandler = this.increaseTime;
 
-    // if (allNextDaysDisabled && this.props.showDisabledMonthNavigation) {
-    //   classes.push("react-datepicker__navigation--next--disabled");
-    //   clickHandler = null;
-    // }
-
     return (
       <button
         type="button"
@@ -169,21 +172,15 @@ export default class Time extends React.Component {
   };
 
   increaseTime = () => {
-    this.setState(
-      {
-        date: addTime(cloneDate(this.state.date), 1)
-      },
-      () => this.handleMonthChange(this.state.date)
-    );
+    const index = this.state.index + 1;
+    this.setState({ index });
   };
 
   decreaseTime = () => {
-    this.setState(
-      {
-        date: subtractTime(cloneDate(this.state.date), 1)
-      },
-      () => this.handleMonthChange(this.state.date)
-    );
+    let index = this.state.index;
+    if (index > 0) {
+      this.setState({ index: index - 1 });
+    }
   };
 
   render() {
@@ -205,7 +202,7 @@ export default class Time extends React.Component {
               {this.renderPreviousTimeOption()}
               {this.renderNextTimeOption()}
               <div className="time-container">
-                {this.renderTimes.bind(this)()}
+                {this.renderTimes.bind(this)(this.state.index)}
               </div>
             </div>
           </div>

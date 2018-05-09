@@ -541,9 +541,18 @@ export default class Calendar extends React.Component {
     return monthList;
   };
 
-  renderTimeSection = () => {
-    if (this.props.showTimeSelect) {
-      return (
+  render() {
+    return (
+      <div
+        className={classnames("react-datepicker", this.props.className, {
+          "react-datepicker--time-only": this.props.showTimeSelectOnly
+        })}
+      >
+        <div className="react-datepicker__triangle" />
+        {this.renderPreviousMonthButton()}
+        {this.renderNextMonthButton()}
+        {this.renderMonths()}
+        {this.renderTodayButton()}
         <Time
           selected={this.props.selected}
           onChange={this.props.onTimeChange}
@@ -562,23 +571,7 @@ export default class Calendar extends React.Component {
           monthRef={this.state.monthContainer}
           injectTimes={this.props.injectTimes}
         />
-      );
-    }
-  };
-
-  render() {
-    return (
-      <div
-        className={classnames("react-datepicker", this.props.className, {
-          "react-datepicker--time-only": this.props.showTimeSelectOnly
-        })}
-      >
-        <div className="react-datepicker__triangle" />
-        {this.renderPreviousMonthButton()}
-        {this.renderNextMonthButton()}
-        {this.renderMonths()}
-        {this.renderTodayButton()}
-        {this.renderTimeSection()}
+        <button className="reminder-button">Set reminder</button>
         {this.props.children}
       </div>
     );
