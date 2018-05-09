@@ -16,6 +16,8 @@ export default class ShowTime extends React.Component {
     });
   };
 
+  confirmReminder = time => {};
+
   render() {
     return (
       <div className="row">
@@ -31,6 +33,7 @@ export default class ShowTime extends React.Component {
     timeIntervals={15}
     dateFormat="LLL"
     timeCaption="time"
+    confirmReminder={this.confirmReminder}
 />
 `}</strong>
           </code>
@@ -43,7 +46,9 @@ export default class ShowTime extends React.Component {
             timeFormat="HH:mm"
             timeIntervals={15}
             timeCaption="time"
-            dateFormat="LLL"/>
+            dateFormat="LLL"
+            confirmReminder={this.confirmReminder}
+          />
         </div>
       </div>
     );
