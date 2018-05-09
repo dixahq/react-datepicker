@@ -354,6 +354,7 @@ export default class DatePicker extends React.Component {
           });
         }
       }
+      this.props.onChange(changedDate, event);
     }
 
     this.props.onSelect(changedDate, event);
@@ -391,6 +392,7 @@ export default class DatePicker extends React.Component {
       preSelection: changedDate
     });
 
+    this.props.onChange(changedDate);
     this.setOpen(false);
     this.setState({ inputValue: null });
   };
@@ -480,6 +482,7 @@ export default class DatePicker extends React.Component {
         event.preventDefault();
       }
     }
+    this.props.onChange(null, event);
     this.setState({ inputValue: null });
   };
 

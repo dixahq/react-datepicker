@@ -26520,6 +26520,7 @@
                   });
                 }
               }
+              _this.props.onChange(changedDate, event);
             }
 
             _this.props.onSelect(changedDate, event);
@@ -26564,6 +26565,7 @@
               preSelection: changedDate
             });
 
+            _this.props.onChange(changedDate);
             _this.setOpen(false);
             _this.setState({ inputValue: null });
           };
@@ -26657,6 +26659,7 @@
                 event.preventDefault();
               }
             }
+            _this.props.onChange(null, event);
             _this.setState({ inputValue: null });
           };
 
