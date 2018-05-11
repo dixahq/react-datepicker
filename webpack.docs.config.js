@@ -10,7 +10,7 @@ module.exports = {
     publicPath: "/"
   },
   resolve: {
-    extensions: ["", ".js", ".jsx"],
+    extensions: [".js", ".jsx"],
 
     // Needed to direct the docs to the local version of the datepicker, this is not needed for
     // normal setup.
@@ -22,24 +22,59 @@ module.exports = {
     }
   },
   module: {
-    loaders: [
-      { test: /\.js/, loader: "babel", exclude: /node_modules/ },
+    rules: [
       {
-        test: /\.scss/,
-        loader: ExtractTextPlugin.extract(
-          "style-loader",
-          "css-loader!sass-loader"
-        )
+        test: /\.js/,
+        use: "babel-loader",
+        exclude: /node_modules/
       },
       {
-        test: /\.css/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        test: /\.scss/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "sass-loader"
+            }
+          ],
+          fallback: "style-loader"
+        })
+      },
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: "css-loader"
+            },
+            {
+              loader: "less-loader"
+            }
+          ],
+          fallback: "style-loader"
+        })
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: "file-loader?name=public/fonts/[name].[ext]"
       }
     ]
   },
   node: { Buffer: false },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
     new ExtractTextPlugin("style.css", { allChunks: true }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)

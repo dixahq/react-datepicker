@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import DixaIcon from "@dixa/react-dixa-icon";
+
 import {
   getHour,
   getMinute,
@@ -68,6 +70,12 @@ export default class Time extends React.Component {
   liClasses = (time, currH, currM) => {
     let classes = ["react-datepicker__time-list-item"];
 
+    if (this.props.selected && this.props.selected._d) {
+      currentTime = this.props.selected._d;
+      const tempString = currentTime.toString().match(/[0-9][0-9]:[0-9][0-9]/);
+      currentTime = tempString[0].substring(0, 2);
+    }
+
     if (currH === getHour(time) && currM === getMinute(time)) {
       classes.push("react-datepicker__time-list-item--selected");
     }
@@ -120,7 +128,7 @@ export default class Time extends React.Component {
         times = times.concat(timesToInject);
       }
     }
-
+    let currentTime = null;
     const time = times.map((time, i) => {
       if (i === index) {
         return (
@@ -150,7 +158,9 @@ export default class Time extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
-      />
+      >
+        <DixaIcon icon="arrow-left" />
+      </button>
     );
   };
 
@@ -167,7 +177,9 @@ export default class Time extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
-      />
+      >
+        <DixaIcon icon="arrow-right" />
+      </button>
     );
   };
 

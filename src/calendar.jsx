@@ -6,6 +6,8 @@ import Time from "./time";
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import DixaIcon from "@dixa/react-dixa-icon";
+
 import {
   now,
   setMonth,
@@ -322,15 +324,12 @@ export default class Calendar extends React.Component {
       return;
     }
 
-    const classes = [
-      "react-datepicker__navigation",
-      "react-datepicker__navigation--previous"
-    ];
+    const classes = ["react-datepicker__navigation_top--previous"];
 
     let clickHandler = this.decreaseMonth;
 
     if (allPrevDaysDisabled && this.props.showDisabledMonthNavigation) {
-      classes.push("react-datepicker__navigation--previous--disabled");
+      classes.push("react-datepicker__navigation_top--previous--disabled");
       clickHandler = null;
     }
 
@@ -339,7 +338,9 @@ export default class Calendar extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
-      />
+      >
+        <DixaIcon icon="arrow-left" />
+      </button>
     );
   };
 
@@ -359,21 +360,18 @@ export default class Calendar extends React.Component {
       return;
     }
 
-    const classes = [
-      "react-datepicker__navigation",
-      "react-datepicker__navigation--next"
-    ];
+    const classes = ["react-datepicker__navigation_top--next"];
     if (this.props.showTimeSelect) {
-      classes.push("react-datepicker__navigation--next--with-time");
+      classes.push("react-datepicker__navigation_top--next--with-time");
     }
     if (this.props.todayButton) {
-      classes.push("react-datepicker__navigation--next--with-today-button");
+      classes.push("react-datepicker__navigation_top--next--with-today-button");
     }
 
     let clickHandler = this.increaseMonth;
 
     if (allNextDaysDisabled && this.props.showDisabledMonthNavigation) {
-      classes.push("react-datepicker__navigation--next--disabled");
+      classes.push("react-datepicker__navigation_top--next--disabled");
       clickHandler = null;
     }
 
@@ -382,7 +380,9 @@ export default class Calendar extends React.Component {
         type="button"
         className={classes.join(" ")}
         onClick={clickHandler}
-      />
+      >
+        <DixaIcon icon="arrow-right" />
+      </button>
     );
   };
 

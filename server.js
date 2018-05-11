@@ -5,10 +5,7 @@ var config = merge({}, require("./webpack.docs.config"));
 
 config.devtool = "cheap-module-eval-source-map";
 config.entry.unshift("webpack-hot-middleware/client");
-config.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
-  new webpack.NoErrorsPlugin()
-);
+config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 var app = express();
 var compiler = webpack(config);
