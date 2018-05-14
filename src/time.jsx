@@ -39,7 +39,7 @@ export default class Time extends React.Component {
   constructor(props: propTypes) {
     super(props);
     this.state = {
-      index: 0
+      index: getHour(props.selected)
     };
   }
 
@@ -67,18 +67,9 @@ export default class Time extends React.Component {
     this.props.onChange(time);
   };
 
-  liClasses = (time, currH, currM) => {
+  liClasses = (time, currH) => {
     let classes = ["react-datepicker__time-list-item"];
 
-    if (this.props.selected && this.props.selected._d) {
-      currentTime = this.props.selected._d;
-      const tempString = currentTime.toString().match(/[0-9][0-9]:[0-9][0-9]/);
-      currentTime = tempString[0].substring(0, 2);
-    }
-
-    if (currH === getHour(time) && currM === getMinute(time)) {
-      classes.push("react-datepicker__time-list-item--selected");
-    }
     if (
       ((this.props.minTime || this.props.maxTime) &&
         isTimeInDisabledRange(time, this.props)) ||
@@ -105,7 +96,6 @@ export default class Time extends React.Component {
     const intervals = this.props.intervals;
     const activeTime = this.props.selected ? this.props.selected : newDate();
     const currH = getHour(activeTime);
-    const currM = getMinute(activeTime);
     let base = getStartOfDay(newDate());
     const multiplier = 1440 / intervals;
     const sortedInjectTimes =
@@ -128,14 +118,13 @@ export default class Time extends React.Component {
         times = times.concat(timesToInject);
       }
     }
-    let currentTime = null;
     const time = times.map((time, i) => {
       if (i === index) {
         return (
           <span
             key={i}
             onClick={this.handleClick.bind(this, time)}
-            className={this.liClasses(time, currH, currM)}
+            className={this.liClasses(time, currH)}
           >
             {formatDate(time, format)}
           </span>
