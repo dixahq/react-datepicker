@@ -97,7 +97,10 @@
   min-width: 300px;
   min-width: inherit;
 }
-.react-datepicker .reminder-button {
+.react-datepicker .reminder-button-container {
+  padding: 5px 10px;
+}
+.react-datepicker .reminder-button-container .reminder-button {
   background-color: #fff;
   border: 1px solid;
   border-color: #4a90e2;
@@ -105,7 +108,7 @@
   border-radius: 5px;
   padding: 10px;
   width: 100%;
-  margin: 10px 1px;
+  margin: 10px 0px;
 }
 
 .react-datepicker--time-only .react-datepicker__triangle {
@@ -350,7 +353,6 @@
 .react-datepicker__time-container {
   width: 100%;
   height: 50px;
-  border: 2px solid #ccc;
   border-radius: 6px;
 }
 .react-datepicker__time-container--with-today-button {

@@ -7,7 +7,7 @@ const dayOfWeekCodes = {
   4: "thu",
   5: "fri",
   6: "sat",
-  7: "sun"
+  0: "sun"
 };
 
 // These functions are not exported so
@@ -169,7 +169,7 @@ export function getStartOfDay(date) {
 }
 
 export function getStartOfWeek(date) {
-  return getStartOf(date, "week");
+  return getStartOf(date, "isoweek");
 }
 export function getStartOfMonth(date) {
   return getStartOf(date, "month");
@@ -182,7 +182,7 @@ export function getStartOfDate(date) {
 // *** End of ***
 
 export function getEndOfWeek(date) {
-  return getEndOf(date, "week");
+  return getEndOf(date, "isoweek");
 }
 
 export function getEndOfMonth(date) {

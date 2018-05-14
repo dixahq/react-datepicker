@@ -272,6 +272,7 @@ export default class Calendar extends React.Component {
 
   header = (date = this.state.date) => {
     const startOfWeek = getStartOfWeek(cloneDate(date));
+    console.log("startOfWeek ", startOfWeek);
     const dayNames = [];
     if (this.props.showWeekNumbers) {
       dayNames.push(
@@ -576,12 +577,14 @@ export default class Calendar extends React.Component {
           monthRef={this.state.monthContainer}
           injectTimes={this.props.injectTimes}
         />
-        <button
-          onClick={this.props.confirmReminder}
-          className="reminder-button"
-        >
-          Set reminder
-        </button>
+        <div className="reminder-button-container">
+          <button
+            className="reminder-button"
+            onClick={this.props.confirmReminder}
+          >
+            Set reminder
+          </button>
+        </div>
         {this.props.children}
       </div>
     );

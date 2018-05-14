@@ -6179,7 +6179,7 @@
         4: "thu",
         5: "fri",
         6: "sat",
-        7: "sun"
+        0: "sun"
       };
 
       // These functions are not exported so
@@ -6358,7 +6358,7 @@
       }
 
       function getStartOfWeek(date) {
-        return getStartOf(date, "week");
+        return getStartOf(date, "isoweek");
       }
       function getStartOfMonth(date) {
         return getStartOf(date, "month");
@@ -6371,7 +6371,7 @@
       // *** End of ***
 
       function getEndOfWeek(date) {
-        return getEndOf(date, "week");
+        return getEndOf(date, "isoweek");
       }
 
       function getEndOfMonth(date) {
@@ -46584,6 +46584,7 @@ https://highlightjs.org/
             var startOfWeek = (0, _date_utils.getStartOfWeek)(
               (0, _date_utils.cloneDate)(date)
             );
+            console.log("startOfWeek ", startOfWeek);
             var dayNames = [];
             if (_this.props.showWeekNumbers) {
               dayNames.push(
@@ -46999,12 +47000,16 @@ https://highlightjs.org/
               injectTimes: this.props.injectTimes
             }),
             _react2.default.createElement(
-              "button",
-              {
-                onClick: this.props.confirmReminder,
-                className: "reminder-button"
-              },
-              "Set reminder"
+              "div",
+              { className: "reminder-button-container" },
+              _react2.default.createElement(
+                "button",
+                {
+                  className: "reminder-button",
+                  onClick: this.props.confirmReminder
+                },
+                "Set reminder"
+              )
             ),
             this.props.children
           );
