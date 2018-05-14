@@ -5527,9 +5527,10 @@
               _this.props.showTimeSelect
             ) {
               _this.setPreSelection(date);
-            } else if (!_this.props.inline) {
-              _this.setOpen(false);
             }
+            // else if (!this.props.inline) {
+            //   this.setOpen(false);
+            // }
           };
 
           _this.setSelected = function(date, event, keepInput) {
