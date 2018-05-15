@@ -5613,7 +5613,7 @@
             });
 
             _this.props.onChange(changedDate);
-            _this.setOpen(false);
+            //this.setOpen(false);
             _this.setState({ inputValue: null });
           };
 
@@ -46585,7 +46585,6 @@ https://highlightjs.org/
             var startOfWeek = (0, _date_utils.getStartOfWeek)(
               (0, _date_utils.cloneDate)(date)
             );
-            console.log("startOfWeek ", startOfWeek);
             var dayNames = [];
             if (_this.props.showWeekNumbers) {
               dayNames.push(

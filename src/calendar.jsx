@@ -272,7 +272,6 @@ export default class Calendar extends React.Component {
 
   header = (date = this.state.date) => {
     const startOfWeek = getStartOfWeek(cloneDate(date));
-    console.log("startOfWeek ", startOfWeek);
     const dayNames = [];
     if (this.props.showWeekNumbers) {
       dayNames.push(
