@@ -5613,7 +5613,7 @@
             });
 
             _this.props.onChange(changedDate);
-            //this.setOpen(false);
+            _this.setOpen(true);
             _this.setState({ inputValue: null });
           };
 
@@ -5715,7 +5715,6 @@
           };
 
           _this.confirmReminder = function() {
-            console.log("confirmReminder in index.jsx ", _this.props.selected);
             _this.props.confirmReminder(_this.props.selected);
           };
 
@@ -5892,7 +5891,7 @@
 
         DatePicker.prototype.render = function render() {
           var calendar = this.renderCalendar();
-
+          console.log("PROPS ", this.props);
           if (this.props.inline && !this.props.withPortal) {
             return calendar;
           }
@@ -46495,7 +46494,8 @@ https://highlightjs.org/
           };
 
           _this.handleDayClick = function(day, event) {
-            return _this.props.onSelect(day, event);
+            event.preventDefault();
+            _this.props.onSelect(day, event);
           };
 
           _this.handleDayMouseEnter = function(day) {
@@ -48914,6 +48914,7 @@ https://highlightjs.org/
             )),
             _this)),
             (_this.handleDayClick = function(day, event) {
+              event.preventDefault();
               if (_this.props.onDayClick) {
                 _this.props.onDayClick(day, event);
               }

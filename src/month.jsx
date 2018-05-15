@@ -36,6 +36,7 @@ export default class Month extends React.Component {
   };
 
   handleDayClick = (day, event) => {
+    event.preventDefault();
     if (this.props.onDayClick) {
       this.props.onDayClick(day, event);
     }

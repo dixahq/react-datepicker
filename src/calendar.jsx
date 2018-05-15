@@ -209,7 +209,10 @@ export default class Calendar extends React.Component {
     );
   };
 
-  handleDayClick = (day, event) => this.props.onSelect(day, event);
+  handleDayClick = (day, event) => {
+    event.preventDefault();
+    this.props.onSelect(day, event);
+  };
 
   handleDayMouseEnter = day => this.setState({ selectingDate: day });
 

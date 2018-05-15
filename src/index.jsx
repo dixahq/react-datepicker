@@ -394,7 +394,7 @@ export default class DatePicker extends React.Component {
     });
 
     this.props.onChange(changedDate);
-    //this.setOpen(false);
+    this.setOpen(true);
     this.setState({ inputValue: null });
   };
 
@@ -492,7 +492,6 @@ export default class DatePicker extends React.Component {
   };
 
   confirmReminder = () => {
-    console.log("confirmReminder in index.jsx ", this.props.selected);
     this.props.confirmReminder(this.props.selected);
   };
 
@@ -626,7 +625,7 @@ export default class DatePicker extends React.Component {
 
   render() {
     const calendar = this.renderCalendar();
-
+    console.log("PROPS ", this.props);
     if (this.props.inline && !this.props.withPortal) {
       return calendar;
     }
