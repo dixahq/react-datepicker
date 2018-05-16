@@ -52,17 +52,18 @@ export default class Time extends React.Component {
     this.list.scrollTop = 30 * (multiplier * currH);
   }
 
-  handleClick = time => {
-    if (
-      ((this.props.minTime || this.props.maxTime) &&
-        isTimeInDisabledRange(time, this.props)) ||
-      (this.props.excludeTimes &&
-        isTimeDisabled(time, this.props.excludeTimes)) ||
-      (this.props.includeTimes &&
-        !isTimeDisabled(time, this.props.includeTimes))
-    ) {
-      return;
-    }
+  handleClick = (time: *) => {
+    //console.log("handleClick in time.jsx ", time)
+    // if (
+    //   ((this.props.minTime || this.props.maxTime) &&
+    //     isTimeInDisabledRange(time, this.props)) ||
+    //   (this.props.excludeTimes &&
+    //     isTimeDisabled(time, this.props.excludeTimes)) ||
+    //   (this.props.includeTimes &&
+    //     !isTimeDisabled(time, this.props.includeTimes))
+    // ) {
+    //   return;
+    // }
 
     this.props.onChange(time);
   };
@@ -123,7 +124,7 @@ export default class Time extends React.Component {
         return (
           <span
             key={i}
-            onClick={this.handleClick.bind(this, time)}
+            onChange={this.handleClick(time)}
             className={this.liClasses(time, currH)}
           >
             {formatDate(time, format)}
@@ -203,7 +204,7 @@ export default class Time extends React.Component {
               {this.renderPreviousTimeOption()}
               {this.renderNextTimeOption()}
               <div className="time-container">
-                {this.renderTimes.bind(this)(this.state.index)}
+                {this.renderTimes(this.state.index)}
               </div>
             </div>
           </div>

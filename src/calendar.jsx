@@ -22,6 +22,7 @@ import {
   localizeDate,
   setYear,
   getYear,
+  getHour,
   isBefore,
   isAfter,
   getLocaleData,
@@ -545,8 +546,14 @@ export default class Calendar extends React.Component {
     return monthList;
   };
 
-  confirmReminder = () => {
-    console.log("SELECTED ", this.props.selected);
+  onTimeChange = (time: *) => {
+    if (this.props.selected && time) {
+      const hour = getHour(time);
+      const propsHour = getHour(this.props.selected);
+      if (hour !== propsHour) {
+        this.props.onTimeChange(time);
+      }
+    }
   };
 
   render() {
@@ -563,7 +570,7 @@ export default class Calendar extends React.Component {
         {this.renderTodayButton()}
         <Time
           selected={this.props.selected}
-          onChange={this.props.onTimeChange}
+          onChange={this.onTimeChange}
           format={this.props.timeFormat}
           includeTimes={this.props.includeTimes}
           intervals={this.props.timeIntervals}

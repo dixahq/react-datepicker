@@ -5611,7 +5611,6 @@
             _this.setState({
               preSelection: changedDate
             });
-
             _this.props.onChange(changedDate);
             _this.setOpen(true);
             _this.setState({ inputValue: null });
@@ -5891,7 +5890,6 @@
 
         DatePicker.prototype.render = function render() {
           var calendar = this.renderCalendar();
-          console.log("PROPS ", this.props);
           if (this.props.inline && !this.props.withPortal) {
             return calendar;
           }
@@ -46910,8 +46908,14 @@ https://highlightjs.org/
             return monthList;
           };
 
-          _this.confirmReminder = function() {
-            console.log("SELECTED ", _this.props.selected);
+          _this.onTimeChange = function(time) {
+            if (_this.props.selected && time) {
+              var hour = (0, _date_utils.getHour)(time);
+              var propsHour = (0, _date_utils.getHour)(_this.props.selected);
+              if (hour !== propsHour) {
+                _this.props.onTimeChange(time);
+              }
+            }
           };
 
           _this.state = {
@@ -46983,7 +46987,7 @@ https://highlightjs.org/
             this.renderTodayButton(),
             _react2.default.createElement(_time2.default, {
               selected: this.props.selected,
-              onChange: this.props.onTimeChange,
+              onChange: this.onTimeChange,
               format: this.props.timeFormat,
               includeTimes: this.props.includeTimes,
               intervals: this.props.timeIntervals,
@@ -49821,22 +49825,17 @@ https://highlightjs.org/
           );
 
           _this.handleClick = function(time) {
-            if (
-              ((_this.props.minTime || _this.props.maxTime) &&
-                (0, _date_utils.isTimeInDisabledRange)(time, _this.props)) ||
-              (_this.props.excludeTimes &&
-                (0, _date_utils.isTimeDisabled)(
-                  time,
-                  _this.props.excludeTimes
-                )) ||
-              (_this.props.includeTimes &&
-                !(0, _date_utils.isTimeDisabled)(
-                  time,
-                  _this.props.includeTimes
-                ))
-            ) {
-              return;
-            }
+            //console.log("handleClick in time.jsx ", time)
+            // if (
+            //   ((this.props.minTime || this.props.maxTime) &&
+            //     isTimeInDisabledRange(time, this.props)) ||
+            //   (this.props.excludeTimes &&
+            //     isTimeDisabled(time, this.props.excludeTimes)) ||
+            //   (this.props.includeTimes &&
+            //     !isTimeDisabled(time, this.props.includeTimes))
+            // ) {
+            //   return;
+            // }
 
             _this.props.onChange(time);
           };
@@ -49914,7 +49913,7 @@ https://highlightjs.org/
                   "span",
                   {
                     key: i,
-                    onClick: _this.handleClick.bind(_this, time),
+                    onChange: _this.handleClick(time),
                     className: _this.liClasses(time, currH)
                   },
                   (0, _date_utils.formatDate)(time, format)
@@ -50023,7 +50022,7 @@ https://highlightjs.org/
                   _react2.default.createElement(
                     "div",
                     { className: "time-container" },
-                    this.renderTimes.bind(this)(this.state.index)
+                    this.renderTimes(this.state.index)
                   )
                 )
               )
@@ -60233,7 +60232,9 @@ https://highlightjs.org/
             });
           };
 
-          _this.confirmReminder = function(time) {};
+          _this.confirmReminder = function(time) {
+            //console.log("TIME ", time)
+          };
 
           _this.state = {
             startDate: (0, _moment2.default)()
@@ -60268,7 +60269,7 @@ https://highlightjs.org/
                 onChange: this.handleChange,
                 showTimeSelect: true,
                 timeFormat: "HH:mm",
-                timeIntervals: 15,
+                timeIntervals: 60,
                 timeCaption: "time",
                 dateFormat: "LLL",
                 confirmReminder: this.confirmReminder

@@ -392,7 +392,6 @@ export default class DatePicker extends React.Component {
     this.setState({
       preSelection: changedDate
     });
-
     this.props.onChange(changedDate);
     this.setOpen(true);
     this.setState({ inputValue: null });
@@ -625,7 +624,6 @@ export default class DatePicker extends React.Component {
 
   render() {
     const calendar = this.renderCalendar();
-    console.log("PROPS ", this.props);
     if (this.props.inline && !this.props.withPortal) {
       return calendar;
     }
