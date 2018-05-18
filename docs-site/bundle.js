@@ -49946,8 +49946,10 @@ https://highlightjs.org/
           };
 
           _this.increaseTime = function() {
-            var index = _this.state.index + 1;
-            _this.setState({ index: index });
+            var index = _this.state.index;
+            if (index < 23) {
+              _this.setState({ index: index + 1 });
+            }
           };
 
           _this.decreaseTime = function() {
@@ -49991,9 +49993,7 @@ https://highlightjs.org/
                 { className: "react-datepicker__time-box" },
                 _react2.default.createElement(
                   "div",
-                  {
-                    className: "react-datepicker__time-list"
-                  },
+                  { className: "react-datepicker__time-list" },
                   this.renderPreviousTimeOption(this.state.minTime),
                   this.renderNextTimeOption(),
                   _react2.default.createElement(

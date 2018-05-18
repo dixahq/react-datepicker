@@ -158,8 +158,10 @@ export default class Time extends React.Component {
   };
 
   increaseTime = () => {
-    const index = this.state.index + 1;
-    this.setState({ index });
+    const index = this.state.index;
+    if (index < 23) {
+      this.setState({ index: index + 1 });
+    }
   };
 
   decreaseTime = () => {
