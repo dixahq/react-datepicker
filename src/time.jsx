@@ -1,18 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import DixaIcon from "@dixa/react-dixa-icon";
+import moment from "moment";
 
 import {
   getHour,
   getMinute,
   newDate,
+  addHours,
   getStartOfDay,
   addMinutes,
   cloneDate,
   formatDate,
-  isTimeInDisabledRange,
-  isTimeDisabled,
-  timesToInjectAfter
+  timesToInjectAfter,
+  isBefore,
+  isAfter
 } from "./date_utils";
 
 export default class Time extends React.Component {
@@ -39,48 +41,27 @@ export default class Time extends React.Component {
   constructor(props: propTypes) {
     super(props);
     this.state = {
-      index: getHour(props.selected)
+      index: getHour(props.selected) + 1,
+      minTime: props.minTime ? addHours(props.minTime, 1) : props.minTime
     };
   }
 
-  componentDidMount() {
-    // code to ensure selected time will always be in focus within time window when it first appears
-    const multiplier = 60 / this.props.intervals;
-    const currH = this.props.selected
-      ? getHour(this.props.selected)
-      : getHour(newDate());
-    this.list.scrollTop = 30 * (multiplier * currH);
-  }
+  // componentDidMount() {
+  //   // code to ensure selected time will always be in focus within time window when it first appears
+  //   const multiplier = 60 / this.props.intervals;
+  //   const currH = this.props.selected
+  //     ? getHour(this.props.selected)
+  //     : getHour(newDate());
+  //   this.list.scrollTop = 30 * (multiplier * currH);
+  // }
 
   handleClick = (time: *) => {
-    //console.log("handleClick in time.jsx ", time)
-    // if (
-    //   ((this.props.minTime || this.props.maxTime) &&
-    //     isTimeInDisabledRange(time, this.props)) ||
-    //   (this.props.excludeTimes &&
-    //     isTimeDisabled(time, this.props.excludeTimes)) ||
-    //   (this.props.includeTimes &&
-    //     !isTimeDisabled(time, this.props.includeTimes))
-    // ) {
-    //   return;
-    // }
-
     this.props.onChange(time);
   };
 
   liClasses = (time, currH) => {
     let classes = ["react-datepicker__time-list-item"];
 
-    if (
-      ((this.props.minTime || this.props.maxTime) &&
-        isTimeInDisabledRange(time, this.props)) ||
-      (this.props.excludeTimes &&
-        isTimeDisabled(time, this.props.excludeTimes)) ||
-      (this.props.includeTimes &&
-        !isTimeDisabled(time, this.props.includeTimes))
-    ) {
-      classes.push("react-datepicker__time-list-item--disabled");
-    }
     if (
       this.props.injectTimes &&
       (getHour(time) * 60 + getMinute(time)) % this.props.intervals !== 0
@@ -135,23 +116,26 @@ export default class Time extends React.Component {
     return time;
   };
 
-  renderPreviousTimeOption = () => {
+  renderPreviousTimeOption = (minTime: ?*) => {
+    let minimumTime = minTime;
+    const selectedTime = this.props.selected;
     const classes = [
       "react-datepicker__navigation",
       "react-datepicker__navigation--previous"
     ];
+    if (minimumTime && minimumTime.isBefore(selectedTime)) {
+      let clickHandler = this.decreaseTime;
 
-    let clickHandler = this.decreaseTime;
-
-    return (
-      <button
-        type="button"
-        className={classes.join(" ")}
-        onClick={clickHandler}
-      >
-        <DixaIcon icon="arrow-left" />
-      </button>
-    );
+      return (
+        <button
+          type="button"
+          className={classes.join(" ")}
+          onClick={clickHandler}
+        >
+          <DixaIcon icon="arrow-left" />
+        </button>
+      );
+    }
   };
 
   renderNextTimeOption = () => {
@@ -190,18 +174,12 @@ export default class Time extends React.Component {
     if (this.props.monthRef) {
       height = this.props.monthRef.clientHeight - 39;
     }
-
     return (
       <div className={`react-datepicker__time-container`}>
         <div className="react-datepicker__time">
           <div className="react-datepicker__time-box">
-            <div
-              className="react-datepicker__time-list"
-              ref={list => {
-                this.list = list;
-              }}
-            >
-              {this.renderPreviousTimeOption()}
+            <div className="react-datepicker__time-list">
+              {this.renderPreviousTimeOption(this.state.minTime)}
               {this.renderNextTimeOption()}
               <div className="time-container">
                 {this.renderTimes(this.state.index)}

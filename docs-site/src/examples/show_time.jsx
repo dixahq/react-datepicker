@@ -49,6 +49,7 @@ export default class ShowTime extends React.Component {
             timeIntervals={60}
             timeCaption="time"
             dateFormat="LLL"
+            minTime={moment()}
             confirmReminder={this.confirmReminder}
           />
         </div>

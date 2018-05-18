@@ -46918,6 +46918,7 @@ https://highlightjs.org/
             }
           };
 
+          console.log(props.minTime);
           _this.state = {
             date: _this.localizeDate(_this.getDateInView()),
             selectingDate: null,
@@ -49757,6 +49758,10 @@ https://highlightjs.org/
 
       var _reactDixaIcon2 = _interopRequireDefault(_reactDixaIcon);
 
+      var _moment = __webpack_require__(0);
+
+      var _moment2 = _interopRequireDefault(_moment);
+
       var _date_utils = __webpack_require__(4);
 
       function _interopRequireDefault(obj) {
@@ -49825,40 +49830,12 @@ https://highlightjs.org/
           );
 
           _this.handleClick = function(time) {
-            //console.log("handleClick in time.jsx ", time)
-            // if (
-            //   ((this.props.minTime || this.props.maxTime) &&
-            //     isTimeInDisabledRange(time, this.props)) ||
-            //   (this.props.excludeTimes &&
-            //     isTimeDisabled(time, this.props.excludeTimes)) ||
-            //   (this.props.includeTimes &&
-            //     !isTimeDisabled(time, this.props.includeTimes))
-            // ) {
-            //   return;
-            // }
-
             _this.props.onChange(time);
           };
 
           _this.liClasses = function(time, currH) {
             var classes = ["react-datepicker__time-list-item"];
 
-            if (
-              ((_this.props.minTime || _this.props.maxTime) &&
-                (0, _date_utils.isTimeInDisabledRange)(time, _this.props)) ||
-              (_this.props.excludeTimes &&
-                (0, _date_utils.isTimeDisabled)(
-                  time,
-                  _this.props.excludeTimes
-                )) ||
-              (_this.props.includeTimes &&
-                !(0, _date_utils.isTimeDisabled)(
-                  time,
-                  _this.props.includeTimes
-                ))
-            ) {
-              classes.push("react-datepicker__time-list-item--disabled");
-            }
             if (
               _this.props.injectTimes &&
               ((0, _date_utils.getHour)(time) * 60 +
@@ -49923,25 +49900,28 @@ https://highlightjs.org/
             return time;
           };
 
-          _this.renderPreviousTimeOption = function() {
+          _this.renderPreviousTimeOption = function(minTime) {
+            var minimumTime = minTime;
+            var selectedTime = _this.props.selected;
             var classes = [
               "react-datepicker__navigation",
               "react-datepicker__navigation--previous"
             ];
+            if (minimumTime && minimumTime.isBefore(selectedTime)) {
+              var clickHandler = _this.decreaseTime;
 
-            var clickHandler = _this.decreaseTime;
-
-            return _react2.default.createElement(
-              "button",
-              {
-                type: "button",
-                className: classes.join(" "),
-                onClick: clickHandler
-              },
-              _react2.default.createElement(_reactDixaIcon2.default, {
-                icon: "arrow-left"
-              })
-            );
+              return _react2.default.createElement(
+                "button",
+                {
+                  type: "button",
+                  className: classes.join(" "),
+                  onClick: clickHandler
+                },
+                _react2.default.createElement(_reactDixaIcon2.default, {
+                  icon: "arrow-left"
+                })
+              );
+            }
           };
 
           _this.renderNextTimeOption = function() {
@@ -49978,28 +49958,28 @@ https://highlightjs.org/
           };
 
           _this.state = {
-            index: (0, _date_utils.getHour)(props.selected)
+            index: (0, _date_utils.getHour)(props.selected) + 1,
+            minTime: props.minTime
+              ? (0, _date_utils.addHours)(props.minTime, 1)
+              : props.minTime
           };
           return _this;
         }
 
-        Time.prototype.componentDidMount = function componentDidMount() {
-          // code to ensure selected time will always be in focus within time window when it first appears
-          var multiplier = 60 / this.props.intervals;
-          var currH = this.props.selected
-            ? (0, _date_utils.getHour)(this.props.selected)
-            : (0, _date_utils.getHour)((0, _date_utils.newDate)());
-          this.list.scrollTop = 30 * (multiplier * currH);
-        };
+        // componentDidMount() {
+        //   // code to ensure selected time will always be in focus within time window when it first appears
+        //   const multiplier = 60 / this.props.intervals;
+        //   const currH = this.props.selected
+        //     ? getHour(this.props.selected)
+        //     : getHour(newDate());
+        //   this.list.scrollTop = 30 * (multiplier * currH);
+        // }
 
         Time.prototype.render = function render() {
-          var _this2 = this;
-
           var height = null;
           if (this.props.monthRef) {
             height = this.props.monthRef.clientHeight - 39;
           }
-
           return _react2.default.createElement(
             "div",
             { className: "react-datepicker__time-container" },
@@ -50012,12 +49992,9 @@ https://highlightjs.org/
                 _react2.default.createElement(
                   "div",
                   {
-                    className: "react-datepicker__time-list",
-                    ref: function ref(list) {
-                      _this2.list = list;
-                    }
+                    className: "react-datepicker__time-list"
                   },
-                  this.renderPreviousTimeOption(),
+                  this.renderPreviousTimeOption(this.state.minTime),
                   this.renderNextTimeOption(),
                   _react2.default.createElement(
                     "div",
@@ -60272,6 +60249,7 @@ https://highlightjs.org/
                 timeIntervals: 60,
                 timeCaption: "time",
                 dateFormat: "LLL",
+                minTime: (0, _moment2.default)(),
                 confirmReminder: this.confirmReminder
               })
             )
