@@ -46918,7 +46918,6 @@ https://highlightjs.org/
             }
           };
 
-          console.log(props.minTime);
           _this.state = {
             date: _this.localizeDate(_this.getDateInView()),
             selectingDate: null,
@@ -49908,14 +49907,12 @@ https://highlightjs.org/
               "react-datepicker__navigation--previous"
             ];
             if (minimumTime && minimumTime.isBefore(selectedTime)) {
-              var clickHandler = _this.decreaseTime;
-
               return _react2.default.createElement(
                 "button",
                 {
                   type: "button",
                   className: classes.join(" "),
-                  onClick: clickHandler
+                  onClick: _this.decreaseTime
                 },
                 _react2.default.createElement(_reactDixaIcon2.default, {
                   icon: "arrow-left"
@@ -49930,14 +49927,12 @@ https://highlightjs.org/
               "react-datepicker__navigation--next"
             ];
 
-            var clickHandler = _this.increaseTime;
-
             return _react2.default.createElement(
               "button",
               {
                 type: "button",
                 className: classes.join(" "),
-                onClick: clickHandler
+                onClick: _this.increaseTime
               },
               _react2.default.createElement(_reactDixaIcon2.default, {
                 icon: "arrow-right"
@@ -49960,22 +49955,12 @@ https://highlightjs.org/
           };
 
           _this.state = {
-            index: (0, _date_utils.getHour)(props.selected) + 1,
-            minTime: props.minTime
-              ? (0, _date_utils.addHours)(props.minTime, 1)
-              : props.minTime
+            index: props.minTime
+              ? (0, _date_utils.getHour)(props.minTime)
+              : (0, _date_utils.getHour)(props.selected)
           };
           return _this;
         }
-
-        // componentDidMount() {
-        //   // code to ensure selected time will always be in focus within time window when it first appears
-        //   const multiplier = 60 / this.props.intervals;
-        //   const currH = this.props.selected
-        //     ? getHour(this.props.selected)
-        //     : getHour(newDate());
-        //   this.list.scrollTop = 30 * (multiplier * currH);
-        // }
 
         Time.prototype.render = function render() {
           var height = null;
@@ -49994,7 +49979,7 @@ https://highlightjs.org/
                 _react2.default.createElement(
                   "div",
                   { className: "react-datepicker__time-list" },
-                  this.renderPreviousTimeOption(this.state.minTime),
+                  this.renderPreviousTimeOption(this.props.minTime),
                   this.renderNextTimeOption(),
                   _react2.default.createElement(
                     "div",
@@ -60213,6 +60198,12 @@ https://highlightjs.org/
             //console.log("TIME ", time)
           };
 
+          _this.renderInitialMinTime = function() {
+            var now = (0, _moment2.default)();
+            var initialNow = now.add(1, "hours");
+            return initialNow;
+          };
+
           _this.state = {
             startDate: (0, _moment2.default)()
           };
@@ -60249,7 +60240,7 @@ https://highlightjs.org/
                 timeIntervals: 60,
                 timeCaption: "time",
                 dateFormat: "LLL",
-                minTime: (0, _moment2.default)(),
+                minTime: this.renderInitialMinTime(),
                 confirmReminder: this.confirmReminder
               })
             )

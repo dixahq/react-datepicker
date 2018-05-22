@@ -20,6 +20,12 @@ export default class ShowTime extends React.Component {
     //console.log("TIME ", time)
   };
 
+  renderInitialMinTime = () => {
+    const now = moment();
+    const initialNow = now.add(1, "hours");
+    return initialNow;
+  };
+
   render() {
     return (
       <div className="row">
@@ -49,7 +55,7 @@ export default class ShowTime extends React.Component {
             timeIntervals={60}
             timeCaption="time"
             dateFormat="LLL"
-            minTime={moment()}
+            minTime={this.renderInitialMinTime()}
             confirmReminder={this.confirmReminder}
           />
         </div>

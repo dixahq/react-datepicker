@@ -41,19 +41,9 @@ export default class Time extends React.Component {
   constructor(props: propTypes) {
     super(props);
     this.state = {
-      index: getHour(props.selected) + 1,
-      minTime: props.minTime ? addHours(props.minTime, 1) : props.minTime
+      index: props.minTime ? getHour(props.minTime) : getHour(props.selected)
     };
   }
-
-  // componentDidMount() {
-  //   // code to ensure selected time will always be in focus within time window when it first appears
-  //   const multiplier = 60 / this.props.intervals;
-  //   const currH = this.props.selected
-  //     ? getHour(this.props.selected)
-  //     : getHour(newDate());
-  //   this.list.scrollTop = 30 * (multiplier * currH);
-  // }
 
   handleClick = (time: *) => {
     this.props.onChange(time);
@@ -124,13 +114,11 @@ export default class Time extends React.Component {
       "react-datepicker__navigation--previous"
     ];
     if (minimumTime && minimumTime.isBefore(selectedTime)) {
-      let clickHandler = this.decreaseTime;
-
       return (
         <button
           type="button"
           className={classes.join(" ")}
-          onClick={clickHandler}
+          onClick={this.decreaseTime}
         >
           <DixaIcon icon="arrow-left" />
         </button>
@@ -144,13 +132,11 @@ export default class Time extends React.Component {
       "react-datepicker__navigation--next"
     ];
 
-    let clickHandler = this.increaseTime;
-
     return (
       <button
         type="button"
         className={classes.join(" ")}
-        onClick={clickHandler}
+        onClick={this.increaseTime}
       >
         <DixaIcon icon="arrow-right" />
       </button>
@@ -181,7 +167,7 @@ export default class Time extends React.Component {
         <div className="react-datepicker__time">
           <div className="react-datepicker__time-box">
             <div className="react-datepicker__time-list">
-              {this.renderPreviousTimeOption(this.state.minTime)}
+              {this.renderPreviousTimeOption(this.props.minTime)}
               {this.renderNextTimeOption()}
               <div className="time-container">
                 {this.renderTimes(this.state.index)}
