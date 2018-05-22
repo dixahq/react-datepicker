@@ -40,10 +40,23 @@ export default class Time extends React.Component {
 
   constructor(props: propTypes) {
     super(props);
+    console.log("minTime ", props.minTime && getHour(props.minTime));
     this.state = {
-      index: props.minTime ? getHour(props.minTime) : getHour(props.selected)
+      index: props.minTime ? this.calculateIndex(getHour(props.minTime)) : null
     };
   }
+
+  calculateIndex = (hour: number) => {
+    let index;
+    if (this.props.intervals === 15) {
+      index = hour * 4;
+    } else if (this.props.intervals === 30) {
+      index = hour * 2;
+    } else {
+      index = hour;
+    }
+    return index;
+  };
 
   handleClick = (time: *) => {
     this.props.onChange(time);
@@ -108,12 +121,11 @@ export default class Time extends React.Component {
 
   renderPreviousTimeOption = (minTime: ?*) => {
     let minimumTime = minTime;
-    const selectedTime = this.props.selected;
     const classes = [
       "react-datepicker__navigation",
       "react-datepicker__navigation--previous"
     ];
-    if (minimumTime && minimumTime.isBefore(selectedTime)) {
+    if (minimumTime && getHour(minimumTime) < getHour(this.props.selected)) {
       return (
         <button
           type="button"
@@ -145,7 +157,12 @@ export default class Time extends React.Component {
 
   increaseTime = () => {
     const index = this.state.index;
-    if (index < 23) {
+    if (this.props.intervals === 60 && index < 23) {
+      this.setState({ index: index + 1 });
+    } else if (this.props.intervals === 30 && index < 47) {
+      this.setState({ index: index + 1 });
+    } else if (this.props.intervals === 15 && index < 95) {
+      console.log("index ", index);
       this.setState({ index: index + 1 });
     }
   };
@@ -162,6 +179,7 @@ export default class Time extends React.Component {
     if (this.props.monthRef) {
       height = this.props.monthRef.clientHeight - 39;
     }
+    console.log("THIS.STATE.INDEX ", this.state.index);
     return (
       <div className={`react-datepicker__time-container`}>
         <div className="react-datepicker__time">

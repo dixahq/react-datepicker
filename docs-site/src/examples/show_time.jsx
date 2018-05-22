@@ -52,7 +52,7 @@ export default class ShowTime extends React.Component {
             onChange={this.handleChange}
             showTimeSelect
             timeFormat="HH:mm"
-            timeIntervals={60}
+            timeIntervals={15}
             timeCaption="time"
             dateFormat="LLL"
             minTime={this.renderInitialMinTime()}

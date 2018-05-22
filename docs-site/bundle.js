@@ -50450,6 +50450,18 @@ https://highlightjs.org/
             _React$Component.call(this, props)
           );
 
+          _this.calculateIndex = function(hour) {
+            var index = void 0;
+            if (_this.props.intervals === 15) {
+              index = hour * 4;
+            } else if (_this.props.intervals === 30) {
+              index = hour * 2;
+            } else {
+              index = hour;
+            }
+            return index;
+          };
+
           _this.handleClick = function(time) {
             _this.props.onChange(time);
           };
@@ -50523,12 +50535,15 @@ https://highlightjs.org/
 
           _this.renderPreviousTimeOption = function(minTime) {
             var minimumTime = minTime;
-            var selectedTime = _this.props.selected;
             var classes = [
               "react-datepicker__navigation",
               "react-datepicker__navigation--previous"
             ];
-            if (minimumTime && minimumTime.isBefore(selectedTime)) {
+            if (
+              minimumTime &&
+              (0, _date_utils.getHour)(minimumTime) <
+                (0, _date_utils.getHour)(_this.props.selected)
+            ) {
               return _react2.default.createElement(
                 "button",
                 {
@@ -50564,7 +50579,12 @@ https://highlightjs.org/
 
           _this.increaseTime = function() {
             var index = _this.state.index;
-            if (index < 23) {
+            if (_this.props.intervals === 60 && index < 23) {
+              _this.setState({ index: index + 1 });
+            } else if (_this.props.intervals === 30 && index < 47) {
+              _this.setState({ index: index + 1 });
+            } else if (_this.props.intervals === 15 && index < 95) {
+              console.log("index ", index);
               _this.setState({ index: index + 1 });
             }
           };
@@ -50576,10 +50596,14 @@ https://highlightjs.org/
             }
           };
 
+          console.log(
+            "minTime ",
+            props.minTime && (0, _date_utils.getHour)(props.minTime)
+          );
           _this.state = {
             index: props.minTime
-              ? (0, _date_utils.getHour)(props.minTime)
-              : (0, _date_utils.getHour)(props.selected)
+              ? _this.calculateIndex((0, _date_utils.getHour)(props.minTime))
+              : null
           };
           return _this;
         }
@@ -50589,6 +50613,7 @@ https://highlightjs.org/
           if (this.props.monthRef) {
             height = this.props.monthRef.clientHeight - 39;
           }
+          console.log("THIS.STATE.INDEX ", this.state.index);
           return _react2.default.createElement(
             "div",
             { className: "react-datepicker__time-container" },
@@ -60782,7 +60807,7 @@ https://highlightjs.org/
                 onChange: this.handleChange,
                 showTimeSelect: true,
                 timeFormat: "HH:mm",
-                timeIntervals: 60,
+                timeIntervals: 15,
                 timeCaption: "time",
                 dateFormat: "LLL",
                 minTime: this.renderInitialMinTime(),
