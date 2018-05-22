@@ -1,5 +1,6 @@
 # React Date Picker
 
+[![npm version](https://badge.fury.io/js/react-datepicker.svg)](https://badge.fury.io/js/react-datepicker)
 [![Build Status](https://travis-ci.org/Hacker0x01/react-datepicker.svg?branch=master)](https://travis-ci.org/Hacker0x01/react-datepicker)
 [![Dependency Status](https://david-dm.org/Hacker0x01/react-datepicker.svg)](https://david-dm.org/Hacker0x01/react-datepicker)
 [![codecov](https://codecov.io/gh/Hacker0x01/react-datepicker/branch/master/graph/badge.svg)](https://codecov.io/gh/Hacker0x01/react-datepicker)
