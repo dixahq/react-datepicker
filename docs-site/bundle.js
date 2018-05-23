@@ -50539,11 +50539,8 @@ https://highlightjs.org/
               "react-datepicker__navigation",
               "react-datepicker__navigation--previous"
             ];
-            if (
-              minimumTime &&
-              (0, _date_utils.getHour)(minimumTime) <
-                (0, _date_utils.getHour)(_this.props.selected)
-            ) {
+
+            if (minimumTime && minimumTime.isBefore(_this.props.selected)) {
               return _react2.default.createElement(
                 "button",
                 {
@@ -50584,7 +50581,6 @@ https://highlightjs.org/
             } else if (_this.props.intervals === 30 && index < 47) {
               _this.setState({ index: index + 1 });
             } else if (_this.props.intervals === 15 && index < 95) {
-              console.log("index ", index);
               _this.setState({ index: index + 1 });
             }
           };
@@ -50596,10 +50592,6 @@ https://highlightjs.org/
             }
           };
 
-          console.log(
-            "minTime ",
-            props.minTime && (0, _date_utils.getHour)(props.minTime)
-          );
           _this.state = {
             index: props.minTime
               ? _this.calculateIndex((0, _date_utils.getHour)(props.minTime))
@@ -50613,7 +50605,6 @@ https://highlightjs.org/
           if (this.props.monthRef) {
             height = this.props.monthRef.clientHeight - 39;
           }
-          console.log("THIS.STATE.INDEX ", this.state.index);
           return _react2.default.createElement(
             "div",
             { className: "react-datepicker__time-container" },

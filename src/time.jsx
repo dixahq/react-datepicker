@@ -40,7 +40,6 @@ export default class Time extends React.Component {
 
   constructor(props: propTypes) {
     super(props);
-    console.log("minTime ", props.minTime && getHour(props.minTime));
     this.state = {
       index: props.minTime ? this.calculateIndex(getHour(props.minTime)) : null
     };
@@ -125,7 +124,8 @@ export default class Time extends React.Component {
       "react-datepicker__navigation",
       "react-datepicker__navigation--previous"
     ];
-    if (minimumTime && getHour(minimumTime) < getHour(this.props.selected)) {
+
+    if (minimumTime && minimumTime.isBefore(this.props.selected)) {
       return (
         <button
           type="button"
@@ -162,7 +162,6 @@ export default class Time extends React.Component {
     } else if (this.props.intervals === 30 && index < 47) {
       this.setState({ index: index + 1 });
     } else if (this.props.intervals === 15 && index < 95) {
-      console.log("index ", index);
       this.setState({ index: index + 1 });
     }
   };
@@ -179,7 +178,6 @@ export default class Time extends React.Component {
     if (this.props.monthRef) {
       height = this.props.monthRef.clientHeight - 39;
     }
-    console.log("THIS.STATE.INDEX ", this.state.index);
     return (
       <div className={`react-datepicker__time-container`}>
         <div className="react-datepicker__time">
