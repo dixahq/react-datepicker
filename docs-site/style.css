@@ -373,7 +373,6 @@
   .react-datepicker__time-box {
   height: inherit;
   width: 300px;
-  overflow-x: hidden;
   margin: 0 auto;
   text-align: center;
 }
