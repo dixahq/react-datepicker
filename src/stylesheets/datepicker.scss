@@ -332,7 +332,6 @@
       div.react-datepicker__time-list {
         list-style: none;
         margin: 0;
-        overflow-x: scroll;
         padding: 0;
         width: 100%;
         box-sizing: content-box;
@@ -345,7 +344,6 @@
           padding-top: 8px;
           position: relative;
           margin: 5px 25px;
-          overflow-x: scroll;
           height: 30px;
         }
 
