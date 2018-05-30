@@ -190,7 +190,7 @@ export default class Day extends React.Component {
         aria-label={`day-${getDate(this.props.day)}`}
         role="option"
       >
-        {getDate(this.props.day)}
+        <span className="react-datepicker__day--inner-label">{getDate(this.props.day)}</span>
       </div>
     );
   }
