@@ -50197,7 +50197,11 @@ https://highlightjs.org/
               "aria-label": "day-" + (0, _date_utils.getDate)(this.props.day),
               role: "option"
             },
-            (0, _date_utils.getDate)(this.props.day)
+            _react2.default.createElement(
+              "span",
+              { className: "react-datepicker__day--inner-label" },
+              (0, _date_utils.getDate)(this.props.day)
+            )
           );
         };
 
