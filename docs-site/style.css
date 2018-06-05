@@ -473,12 +473,8 @@
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  color: #000;
   display: inline-block;
-  width: 1.7rem;
   line-height: 1.7rem;
-  text-align: center;
-  margin: 0.166rem;
   padding: 6px;
 }
 
@@ -713,12 +709,6 @@
   display: flex;
   z-index: 2147483647;
 }
-.react-datepicker__portal .react-datepicker__day-name,
-.react-datepicker__portal .react-datepicker__day,
-.react-datepicker__portal .react-datepicker__time-name {
-  width: 3rem;
-  line-height: 3rem;
-}
 @media (max-width: 400px), (max-height: 550px) {
   .react-datepicker__portal .react-datepicker__day-name,
   .react-datepicker__portal .react-datepicker__day,
@@ -830,25 +820,25 @@
   padding: 0 10px;
 }
 .react-datepicker__day {
-  font-size: 12px !important;
+  font-size: 12px;
   cursor: pointer;
 }
 .react-datepicker__day-name {
-  font-size: 12px !important;
+  font-size: 12px;
 }
 .react-datepicker__navigation_top--previous span.i-arrow-left {
   color: #fff;
   position: relative;
   margin: -6px;
   font-size: 13px;
-  background: transparent !important;
+  background: transparent;
 }
 .react-datepicker__navigation_top--next .i-arrow-right {
   color: #fff;
   position: relative;
   margin: -5px;
   font-size: 13px;
-  background: transparent !important;
+  background: transparent;
 }
 .react-datepicker__time-list
   button.react-datepicker__navigation.react-datepicker__navigation
@@ -886,8 +876,8 @@
   vertical-align: 1px;
 }
 .react-datepicker__navigation--next {
-  right: 16px !important;
-  top: 12px !important;
+  right: 16px;
+  top: 12px;
   background: #3f4d6a;
   border: 0;
 }
@@ -899,8 +889,8 @@
   vertical-align: 1px;
 }
 .react-datepicker__navigation--previous {
-  left: 16px !important;
-  top: 12px !important;
+  left: 16px;
+  top: 12px;
   background: #3f4d6a;
   border: 0;
 }
@@ -970,7 +960,7 @@
   padding: 0 10px;
 }
 .react-datepicker__time-box {
-  width: auto !important;
+  width: auto;
   border: 1px solid #dfe1e6;
   border-radius: 5px;
 }
@@ -984,7 +974,7 @@
 }
 
 .grayed-out-text {
-  color: #bdbdbd !important;
+  color: #bdbdbd;
 }
 html,
 body,

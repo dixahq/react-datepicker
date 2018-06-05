@@ -400,12 +400,8 @@
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  color: $datepicker__text-color;
   display: inline-block;
-  width: $datepicker__item-size;
   line-height: $datepicker__item-size;
-  text-align: center;
-  margin: $datepicker__day-margin;
   padding: 6px;
 }
 
@@ -630,13 +626,6 @@
   display: flex;
   z-index: 2147483647;
 
-  .react-datepicker__day-name,
-  .react-datepicker__day,
-  .react-datepicker__time-name {
-    width: 3rem;
-    line-height: 3rem;
-  }
-
   // Resize for small screens
   @media (max-width: 400px), (max-height: 550px) {
     .react-datepicker__day-name,
@@ -766,12 +755,12 @@
   }
 
   &__day {
-    font-size: 12px !important;
+    font-size: 12px;
     cursor: pointer;
   }
 
   &__day-name {
-    font-size: 12px !important;
+    font-size: 12px;
   }
 
   &__navigation_top--previous span.i-arrow-left {
@@ -779,7 +768,7 @@
     position: relative;
     margin: -6px;
     font-size: 13px;
-    background: transparent !important;
+    background: transparent;
   }
 
   &__navigation_top--next .i-arrow-right {
@@ -787,7 +776,7 @@
     position: relative;
     margin: -5px;
     font-size: 13px;
-    background: transparent !important;
+    background: transparent;
   }
 
   &__time-list
@@ -832,8 +821,8 @@
   }
 
   &__navigation--next {
-    right: 16px !important;
-    top: 12px !important;
+    right: 16px;
+    top: 12px;
     background: #3f4d6a;
     border: 0;
 
@@ -847,8 +836,8 @@
   }
 
   &__navigation--previous {
-    left: 16px !important;
-    top: 12px !important;
+    left: 16px;
+    top: 12px;
     background: #3f4d6a;
     border: 0;
 
@@ -931,7 +920,7 @@
   }
 
   &__time-box {
-    width: auto !important;
+    width: auto;
     border: 1px solid #dfe1e6;
     border-radius: 5px;
   }
@@ -947,5 +936,5 @@
 }
 
 .grayed-out-text {
-  color: #bdbdbd !important;
+  color: #bdbdbd;
 }
