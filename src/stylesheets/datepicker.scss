@@ -162,7 +162,7 @@
       color: #fff;
       position: relative;
       margin: -6px;
-      font-size: 13px;
+      font-size: 15px;
     }
   }
 
@@ -644,12 +644,10 @@
   }
 
   .react-datepicker__navigation_top--next {
-    background-color: #000;
     border-radius: 50%;
     width: 18px;
     height: 18px;
     position: absolute;
-    top: 10px;
     z-index: 2;
 
     &:hover {
@@ -664,13 +662,11 @@
   }
 
   .react-datepicker__navigation_top--previous {
-    background-color: #000;
     border-radius: 50%;
     width: 18px;
     height: 18px;
     position: absolute;
     z-index: 2;
-    top: 10px;
 
     &:hover {
       border-left-color: darken($datepicker__muted-color, 10%);
@@ -764,7 +760,7 @@
     color: #fff;
     position: relative;
     margin: -6px;
-    font-size: 13px;
+    font-size: 15px;
     background: transparent;
   }
 
@@ -772,7 +768,7 @@
     color: #fff;
     position: relative;
     margin: -5px;
-    font-size: 13px;
+    font-size: 15px;
     background: transparent;
   }
 
@@ -788,8 +784,8 @@
   }
 
   &__navigation_top--next {
-    right: 16px !important;
-    top: 8px !important;
+    right: 16px;
+    top: 10px;
     background: #3f4d6a;
     border: 0;
 
@@ -803,13 +799,12 @@
   }
 
   &__navigation_top--previous {
-    left: 16px !important;
-    top: 8px !important;
+    left: 16px;
     background: #3f4d6a;
     border: 0;
-
+    top: 10px;
     span {
-      font-size: 15px !important;
+      font-size: 15px;
       margin: -5px;
       &:before {
         vertical-align: 1px;
@@ -819,7 +814,7 @@
 
   &__navigation--next {
     right: 16px;
-    top: 12px;
+    top: 16px;
     background: #3f4d6a;
     border: 0;
 
@@ -834,7 +829,7 @@
 
   &__navigation--previous {
     left: 16px;
-    top: 12px;
+    top: 16px;
     background: #3f4d6a;
     border: 0;
 

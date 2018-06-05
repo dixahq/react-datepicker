@@ -2,7 +2,7 @@
   "author": "HackerOne",
   "name": "@dixa/react-datepicker",
   "description": "A simple and reusable datepicker component for React",
-  "version": "1.5.3-beta9",
+  "version": "1.5.3-beta10",
   "license": "MIT",
   "homepage": "https://github.com/Hacker0x01/react-datepicker",
   "main": "lib",

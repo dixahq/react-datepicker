@@ -228,7 +228,7 @@
   color: #fff;
   position: relative;
   margin: -6px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .react-datepicker__navigation--next {
   position: absolute;
@@ -723,12 +723,10 @@
   border: 0.81rem solid transparent;
 }
 .react-datepicker__portal .react-datepicker__navigation_top--next {
-  background-color: #000;
   border-radius: 50%;
   width: 18px;
   height: 18px;
   position: absolute;
-  top: 10px;
   z-index: 2;
 }
 .react-datepicker__portal .react-datepicker__navigation_top--next:hover {
@@ -741,13 +739,11 @@
   cursor: default;
 }
 .react-datepicker__portal .react-datepicker__navigation_top--previous {
-  background-color: #000;
   border-radius: 50%;
   width: 18px;
   height: 18px;
   position: absolute;
   z-index: 2;
-  top: 10px;
 }
 .react-datepicker__portal .react-datepicker__navigation_top--previous:hover {
   border-left-color: #b3b3b3;
@@ -827,14 +823,14 @@
   color: #fff;
   position: relative;
   margin: -6px;
-  font-size: 13px;
+  font-size: 15px;
   background: transparent;
 }
 .react-datepicker__navigation_top--next .i-arrow-right {
   color: #fff;
   position: relative;
   margin: -5px;
-  font-size: 13px;
+  font-size: 15px;
   background: transparent;
 }
 .react-datepicker__time-list
@@ -847,8 +843,8 @@
   color: #2c3e50;
 }
 .react-datepicker__navigation_top--next {
-  right: 16px !important;
-  top: 8px !important;
+  right: 16px;
+  top: 10px;
   background: #3f4d6a;
   border: 0;
 }
@@ -860,13 +856,13 @@
   vertical-align: 1px;
 }
 .react-datepicker__navigation_top--previous {
-  left: 16px !important;
-  top: 8px !important;
+  left: 16px;
   background: #3f4d6a;
   border: 0;
+  top: 10px;
 }
 .react-datepicker__navigation_top--previous span {
-  font-size: 15px !important;
+  font-size: 15px;
   margin: -5px;
 }
 .react-datepicker__navigation_top--previous span:before {
@@ -874,7 +870,7 @@
 }
 .react-datepicker__navigation--next {
   right: 16px;
-  top: 12px;
+  top: 16px;
   background: #3f4d6a;
   border: 0;
 }
@@ -887,7 +883,7 @@
 }
 .react-datepicker__navigation--previous {
   left: 16px;
-  top: 12px;
+  top: 16px;
   background: #3f4d6a;
   border: 0;
 }
