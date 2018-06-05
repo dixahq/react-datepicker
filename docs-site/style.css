@@ -870,7 +870,7 @@
 }
 .react-datepicker__navigation--next {
   right: 16px;
-  top: 16px;
+  top: 12px;
   background: #3f4d6a;
   border: 0;
 }
@@ -883,7 +883,7 @@
 }
 .react-datepicker__navigation--previous {
   left: 16px;
-  top: 16px;
+  top: 12px;
   background: #3f4d6a;
   border: 0;
 }
