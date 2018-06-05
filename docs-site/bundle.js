@@ -36187,8 +36187,7 @@ https://highlightjs.org/
     },
     /* 222 */
     /***/ function(module, exports) {
-      module.exports = function(hljs) {
-        // TODO support filter tags like :javascript, support inline HTML
+      module.exports = function(hljs) { // TODO support filter tags like :javascript, support inline HTML
         return {
           case_insensitive: true,
           contains: [
@@ -42128,8 +42127,7 @@ https://highlightjs.org/
     },
     /* 281 */
     /***/ function(module, exports) {
-      module.exports = function(hljs) {
-        // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
+      module.exports = function(hljs) { // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
         var STRINGS = {
           // PB IDE color: #0080FF (Azure Radiance)
           className: "string",

@@ -801,6 +801,191 @@
   border-left-color: #e6e6e6;
   cursor: default;
 }
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  margin: 0;
+}
+
+.react-datepicker {
+  width: 100%;
+  padding: 0;
+}
+.react-datepicker button:focus {
+  outline: 0;
+}
+.react-datepicker .reminder-button {
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #4a90e2;
+  color: #4a90e2;
+  border-radius: 5px;
+  padding: 15px;
+  width: 100%;
+  margin: 15px 0px 0px;
+  font-size: 12px;
+}
+.react-datepicker .reminder-button-container {
+  padding: 0 10px;
+}
+.react-datepicker__day {
+  font-size: 12px !important;
+  cursor: pointer;
+}
+.react-datepicker__day-name {
+  font-size: 12px !important;
+}
+.react-datepicker__navigation_top--previous span.i-arrow-left {
+  color: #fff;
+  position: relative;
+  margin: -6px;
+  font-size: 13px;
+  background: transparent !important;
+}
+.react-datepicker__navigation_top--next .i-arrow-right {
+  color: #fff;
+  position: relative;
+  margin: -5px;
+  font-size: 13px;
+  background: transparent !important;
+}
+.react-datepicker__time-list
+  button.react-datepicker__navigation.react-datepicker__navigation
+  span {
+  background: transparent;
+}
+.react-datepicker__current-month {
+  font-size: 12px;
+  color: #2c3e50;
+}
+.react-datepicker__navigation_top--next {
+  right: 16px !important;
+  top: 8px !important;
+  background: #3f4d6a;
+  border: 0;
+}
+.react-datepicker__navigation_top--next span {
+  font-size: 15px !important;
+  margin: -5px;
+}
+.react-datepicker__navigation_top--next span:before {
+  vertical-align: 1px;
+}
+.react-datepicker__navigation_top--previous {
+  left: 16px !important;
+  top: 8px !important;
+  background: #3f4d6a;
+  border: 0;
+}
+.react-datepicker__navigation_top--previous span {
+  font-size: 15px !important;
+  margin: -5px;
+}
+.react-datepicker__navigation_top--previous span:before {
+  vertical-align: 1px;
+}
+.react-datepicker__navigation--next {
+  right: 16px !important;
+  top: 12px !important;
+  background: #3f4d6a;
+  border: 0;
+}
+.react-datepicker__navigation--next span {
+  font-size: 15px !important;
+  margin: -5px;
+}
+.react-datepicker__navigation--next span:before {
+  vertical-align: 1px;
+}
+.react-datepicker__navigation--previous {
+  left: 16px !important;
+  top: 12px !important;
+  background: #3f4d6a;
+  border: 0;
+}
+.react-datepicker__navigation--previous span {
+  font-size: 15px;
+  margin: -5px;
+}
+.react-datepicker__navigation--previous span:before {
+  vertical-align: 1px;
+}
+.react-datepicker__day-name {
+  color: #3e4957;
+  font-weight: 600;
+  text-align: center;
+  width: 14.285%;
+  padding: 10px 0;
+}
+.react-datepicker__day-names {
+  white-space: nowrap;
+  text-align: center;
+  padding: 0 10px;
+}
+.react-datepicker__month {
+  margin: 0;
+  text-align: center;
+  padding: 0;
+}
+.react-datepicker__week {
+  padding: 0 10px;
+}
+.react-datepicker__day {
+  color: #6b7c93;
+  text-align: center;
+  font-weight: 500;
+  width: 14.285%;
+  padding: 10px 0;
+}
+.react-datepicker__day:hover {
+  border-radius: 5px;
+  background-color: #e1e8f6;
+}
+.react-datepicker__day--today {
+  font-weight: 600;
+}
+.react-datepicker__day--disabled {
+  color: #d3d9d9;
+}
+.react-datepicker__day--disabled:hover {
+  border-radius: 5px;
+  background-color: transparent;
+}
+.react-datepicker__day--selected {
+  background-color: #3f4d6a;
+  color: #fff;
+  border-radius: 5px;
+}
+.react-datepicker__day--selected:hover {
+  border-radius: 5px;
+  background-color: #52648a;
+}
+.react-datepicker__header {
+  margin: 0px 10px;
+  border-radius: 5px;
+  background: #f0f2f3;
+}
+.react-datepicker__time {
+  padding: 0 10px;
+}
+.react-datepicker__time-box {
+  width: auto !important;
+  border: 1px solid #dfe1e6;
+  border-radius: 5px;
+}
+.react-datepicker__time-container {
+  margin-top: 10px;
+  height: auto;
+  width: auto;
+}
+.react-datepicker__time-container span.react-datepicker__time-list-item {
+  font-size: 12px;
+}
+
+.grayed-out-text {
+  color: #bdbdbd !important;
+}
 html,
 body,
 div,
