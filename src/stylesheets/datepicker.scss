@@ -378,10 +378,7 @@
 .react-datepicker__week-number {
   color: $datepicker__muted-color;
   display: inline-block;
-  width: $datepicker__item-size;
   line-height: $datepicker__item-size;
-  text-align: center;
-  margin: $datepicker__day-margin;
   &.react-datepicker__week-number--clickable {
     cursor: pointer;
     &:hover {
@@ -892,7 +889,7 @@
   }
 
   &__day--disabled {
-    color: #d3d9d9;
+    color: #d3d9d9 !important;
     &:hover {
       border-radius: 5px;
       background-color: transparent;
