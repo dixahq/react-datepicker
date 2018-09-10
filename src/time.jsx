@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import DixaIcon from "@dixa/react-dixa-icon";
+import DixaIcon from "@dixa/dixa-modern-icons";
 import moment from "moment";
 
 import {
